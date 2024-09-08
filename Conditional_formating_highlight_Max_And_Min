@@ -1,0 +1,23 @@
+1  MaxMin = 
+2  VAR Sales = [Total Sales]
+3  VAR MaxSalesOverall = 
+4      MAXX(
+5          ALLSELECTED('dimDate'[Year], dimDate[Quarter], dimDate[QuarterNo]),
+6          CALCULATE([Total Sales])
+7      )
+8  VAR MinSalesOverall = 
+9      MINX(
+10         ALLSELECTED('dimDate'[Year], dimDate[Quarter], dimDate[QuarterNo]),
+11         CALCULATE([Total Sales])
+12     )
+13 VAR Result = 
+14     SWITCH(
+15         TRUE,
+16         Sales = MaxSalesOverall, "#22957e",
+17         Sales = MinSalesOverall, "#ff908c",
+18         "#7bc8fe"
+19     )
+20 RETURN
+21 Result
+
+
